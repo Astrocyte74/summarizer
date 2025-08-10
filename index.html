@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📚 AI Book Summaries Library</title>
+    <title>📚 AI Book Summaries</title>
     <style>
         * {
             margin: 0;
@@ -20,16 +20,17 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
         
+        /* Clean, minimal header */
         .header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 30px;
+            border-radius: 16px;
+            padding: 40px 30px 30px;
             margin-bottom: 30px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             text-align: center;
@@ -37,167 +38,111 @@
         
         .header h1 {
             color: #2c3e50;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
             font-weight: 700;
+            margin-bottom: 8px;
         }
         
         .header p {
             color: #7f8c8d;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            font-size: 1rem;
+            margin: 0;
         }
         
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .stat {
-            text-align: center;
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-        }
-        
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            line-height: 1;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-top: 5px;
-        }
-        
+        /* Streamlined book grid */
         .books-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 20px;
         }
         
+        /* Clean book cards */
         .book-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 25px;
+            border-radius: 16px;
+            padding: 30px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
         
         .book-title {
             color: #2c3e50;
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
-        .book-meta {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
+        /* Simple reading modes display */
+        .reading-modes {
+            margin-bottom: 25px;
+        }
+        
+        .modes-label {
             font-size: 0.9rem;
             color: #7f8c8d;
+            margin-bottom: 10px;
+            text-align: center;
         }
         
-        .meta-item {
+        .mode-badges {
             display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .summary-types {
-            margin-bottom: 20px;
-        }
-        
-        .types-label {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            margin-bottom: 8px;
-        }
-        
-        .type-badges {
-            display: flex;
+            justify-content: center;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
         }
         
-        .type-badge {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        .mode-badge {
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
             font-weight: 600;
+            border: none;
         }
         
-        .type-detailed { background: #e3f2fd; color: #1976d2; }
-        .type-simple { background: #e8f5e8; color: #2e7d32; }
-        .type-analogies { background: #fff3e0; color: #f57c00; }
+        .mode-detailed { 
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+        .mode-simple { 
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+        }
+        .mode-analogies { 
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+        }
         
+        /* Prominent read button */
         .read-button {
             display: block;
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            padding: 16px;
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 12px;
             text-align: center;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             transition: all 0.3s ease;
+            margin-top: 5px;
         }
         
         .read-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(142, 68, 173, 0.4);
         }
         
-        .features {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 30px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-        }
-        
-        .features h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-        
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #7f8c8d;
-            font-size: 0.95rem;
-        }
-        
+        /* Clean footer */
         .footer {
             text-align: center;
             color: rgba(255, 255, 255, 0.8);
@@ -205,36 +150,53 @@
             font-size: 0.9rem;
         }
         
+        /* Mobile optimizations */
         @media (max-width: 768px) {
-            .header h1 { font-size: 2rem; }
-            .stats { gap: 15px; }
-            .stat { padding: 10px 20px; }
-            .books-grid { grid-template-columns: 1fr; }
-            .book-meta { grid-template-columns: 1fr; }
+            .container {
+                padding: 15px;
+            }
+            
+            .header {
+                padding: 25px 20px 20px;
+                margin-bottom: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header p {
+                font-size: 0.95rem;
+            }
+            
+            .book-title {
+                font-size: 1.5rem;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .mode-badges {
+                gap: 8px;
+            }
+            
+            .mode-badge {
+                font-size: 0.8rem;
+                padding: 6px 14px;
+            }
+            
+            .read-button {
+                padding: 14px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
+        <!-- Clean Header -->
         <div class="header">
             <h1>📚 AI Book Summaries</h1>
             <p>Interactive chapter summaries with multiple reading modes</p>
-            
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">1</div>
-                    <div class="stat-label">Books</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">33</div>
-                    <div class="stat-label">Chapters</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">Reading Modes</div>
-                </div>
-            </div>
         </div>
         
         <!-- Books Grid -->
@@ -245,29 +207,10 @@
                     📖 Themissingbillionaires
                 </div>
                 
-                <div class="book-meta">
-                    <div class="meta-item">
-                        <span>📊</span>
-                        <span>33 chapters</span>
-                    </div>
-                    <div class="meta-item">
-                        <span>💾</span>
-                        <span>0.7 MB</span>
-                    </div>
-                    <div class="meta-item">
-                        <span>📅</span>
-                        <span>Aug 10</span>
-                    </div>
-                    <div class="meta-item">
-                        <span>📱</span>
-                        <span>Mobile ready</span>
-                    </div>
-                </div>
-                
-                <div class="summary-types">
-                    <div class="types-label">Available summary types:</div>
-                    <div class="type-badges">
-                        <span class="type-badge type-detailed">🔍 Detailed</span><span class="type-badge type-simple">📝 Simple</span><span class="type-badge type-analogies">🐵 Analogies</span>
+                <div class="reading-modes">
+                    <div class="modes-label">Available reading modes</div>
+                    <div class="mode-badges">
+                        <div class="mode-badge mode-detailed">🔍 Detailed</div><div class="mode-badge mode-simple">📝 Simple</div><div class="mode-badge mode-analogies">🐵 Analogies</div>
                     </div>
                 </div>
                 
@@ -276,37 +219,6 @@
                 </a>
             </div>
 
-        </div>
-        
-        <!-- Features -->
-        <div class="features">
-            <h3>✨ Features</h3>
-            <div class="feature-list">
-                <div class="feature-item">
-                    <span>🔍</span>
-                    <span>Detailed analysis mode</span>
-                </div>
-                <div class="feature-item">
-                    <span>📝</span>
-                    <span>Simple summary mode</span>
-                </div>
-                <div class="feature-item">
-                    <span>🐵</span>
-                    <span>Fun analogies & stories</span>
-                </div>
-                <div class="feature-item">
-                    <span>📱</span>
-                    <span>Mobile swipe navigation</span>
-                </div>
-                <div class="feature-item">
-                    <span>🎯</span>
-                    <span>Progress tracking</span>
-                </div>
-                <div class="feature-item">
-                    <span>🌙</span>
-                    <span>Modern glass design</span>
-                </div>
-            </div>
         </div>
         
         <div class="footer">
