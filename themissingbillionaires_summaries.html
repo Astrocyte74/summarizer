@@ -1480,6 +1480,9 @@
             if (chaptersData.length > 0) {
                 selectChapter(chaptersData[0].id);
             }
+            
+            // Add icons to content section headers after initial load
+            setTimeout(addContentSectionIcons, 100);
         }
         
         function renderChapterList() {
