@@ -1635,7 +1635,21 @@
                 
                 // Check if this header matches one of our target sections
                 for (const [sectionName, iconSvg] of Object.entries(sectionIcons)) {
-                    if (headerText.includes(sectionName.replace(':', ''))) {
+                    const sectionNameClean = sectionName.replace(':', '').toLowerCase();
+                    const headerTextClean = headerText.toLowerCase();
+                    
+                    if (headerTextClean.includes(sectionNameClean) || 
+                        headerTextClean.includes(sectionName.toLowerCase()) ||
+                        (sectionNameClean === 'key ideas' && headerTextClean.includes('key ideas')) ||
+                        (sectionNameClean === 'golden nuggets' && headerTextClean.includes('golden nuggets')) ||
+                        (sectionNameClean === 'practical and applicable' && (headerTextClean.includes('practical') || headerTextClean.includes('applicable'))) ||
+                        (sectionNameClean === 'paradigms and thinking models' && (headerTextClean.includes('paradigms') || headerTextClean.includes('thinking models')))) {
+                        
+                        // Don't replace if already wrapped
+                        if (header.parentNode.classList && header.parentNode.classList.contains('content-section-header')) {
+                            break;
+                        }
+                        
                         // Create wrapper div with icon
                         const wrapper = document.createElement('div');
                         wrapper.className = 'content-section-header';
