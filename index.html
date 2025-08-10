@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 AI Book Summaries Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .book-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .book-title {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .book-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .summary-types {
+            margin-bottom: 20px;
+        }
+        
+        .types-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+        }
+        
+        .type-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .type-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .type-detailed { background: #e3f2fd; color: #1976d2; }
+        .type-simple { background: #e8f5e8; color: #2e7d32; }
+        .type-analogies { background: #fff3e0; color: #f57c00; }
+        
+        .read-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .read-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.4);
+        }
+        
+        .features {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .features h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+        
+        .footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .stats { gap: 15px; }
+            .stat { padding: 10px 20px; }
+            .books-grid { grid-template-columns: 1fr; }
+            .book-meta { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📚 AI Book Summaries</h1>
+            <p>Interactive chapter summaries with multiple reading modes</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Books</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">33</div>
+                    <div class="stat-label">Chapters</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Reading Modes</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Books Grid -->
+        <div class="books-grid">
+
+            <div class="book-card">
+                <div class="book-title">
+                    📖 Themissingbillionaires
+                </div>
+                
+                <div class="book-meta">
+                    <div class="meta-item">
+                        <span>📊</span>
+                        <span>33 chapters</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>💾</span>
+                        <span>0.7 MB</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>📅</span>
+                        <span>Aug 10</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>📱</span>
+                        <span>Mobile ready</span>
+                    </div>
+                </div>
+                
+                <div class="summary-types">
+                    <div class="types-label">Available summary types:</div>
+                    <div class="type-badges">
+                        <span class="type-badge type-detailed">🔍 Detailed</span><span class="type-badge type-simple">📝 Simple</span><span class="type-badge type-analogies">🐵 Analogies</span>
+                    </div>
+                </div>
+                
+                <a href="themissingbillionaires_summaries.html" class="read-button">
+                    📚 Start Reading
+                </a>
+            </div>
+
+        </div>
+        
+        <!-- Features -->
+        <div class="features">
+            <h3>✨ Features</h3>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span>🔍</span>
+                    <span>Detailed analysis mode</span>
+                </div>
+                <div class="feature-item">
+                    <span>📝</span>
+                    <span>Simple summary mode</span>
+                </div>
+                <div class="feature-item">
+                    <span>🐵</span>
+                    <span>Fun analogies & stories</span>
+                </div>
+                <div class="feature-item">
+                    <span>📱</span>
+                    <span>Mobile swipe navigation</span>
+                </div>
+                <div class="feature-item">
+                    <span>🎯</span>
+                    <span>Progress tracking</span>
+                </div>
+                <div class="feature-item">
+                    <span>🌙</span>
+                    <span>Modern glass design</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Generated by EPUB Summarizer • August 10, 2025
+        </div>
+    </div>
+</body>
+</html>
