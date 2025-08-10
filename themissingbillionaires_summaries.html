@@ -528,22 +528,26 @@
                 box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             }
             
-            /* Compact read button for mobile */
+            /* Tiny read button for mobile */
             .mark-read-btn {
                 position: fixed;
                 bottom: 70px;
                 right: 10px;
-                padding: 6px 10px;
-                font-size: 0.75rem;
-                border-radius: 15px;
+                padding: 4px 8px;
+                font-size: 0.65rem;
+                border-radius: 12px;
                 z-index: 101;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-                min-height: auto;
-                height: auto;
-                max-width: 90px;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+                min-height: 24px;
+                height: 24px;
+                max-width: 70px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                line-height: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             
             /* Optimized typography for mobile */
@@ -1429,7 +1433,17 @@
             });
             
             const activeIndex = chaptersData.findIndex(c => c.id === chapterId);
-            document.querySelectorAll('.chapter-item')[activeIndex].classList.add('active');
+            const activeChapterElement = document.querySelectorAll('.chapter-item')[activeIndex];
+            activeChapterElement.classList.add('active');
+            
+            // Auto-scroll active chapter into view on mobile
+            if (window.innerWidth <= 768) {
+                activeChapterElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                });
+            }
             
             // Update mobile navigation buttons
             updateMobileNavigation(activeIndex);
