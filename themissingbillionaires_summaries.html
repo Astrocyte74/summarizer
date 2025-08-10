@@ -340,116 +340,277 @@
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
+            body {
+                padding: 0;
             }
             
+            .container {
+                padding: 0;
+                max-width: 100%;
+            }
+            
+            /* Collapsible header - much smaller on mobile */
             .header {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
+                margin-bottom: 0;
+                padding: 10px 15px;
+                border-radius: 0;
             }
             
             .header-title {
-                justify-content: center;
+                justify-content: space-between;
                 min-width: auto;
             }
             
-            .stats {
-                gap: 15px;
-                justify-content: center;
-            }
-            
-            .content-area {
-                grid-template-columns: 1fr;
-                gap: 0;
-                min-height: 60vh;
-            }
-            
-            .sidebar {
-                max-height: 200px;
-                border-right: none;
-                border-bottom: 1px solid #e2e8f0;
-            }
-            
-            .sidebar-header {
-                padding: 12px 15px;
-                font-size: 0.8rem;
-            }
-            
-            .chapter-link {
-                padding: 12px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .summary-tabs {
-                flex-wrap: wrap;
-                gap: 2px;
-            }
-            
-            .tab-button {
-                font-size: 0.8rem;
-                padding: 10px 12px;
-                flex: 1;
-                min-width: 120px;
-            }
-            
-            .summary-content {
-                padding: 20px;
-                max-height: 50vh;
-                padding-bottom: 80px;
-            }
-            
-            .mobile-nav {
-                display: flex;
-            }
-            
-            .mark-read-btn {
-                position: fixed;
-                top: auto;
-                bottom: 90px;
-                right: 20px;
-                z-index: 101;
-            }
-            
-            .summary-content h1 {
-                font-size: 1.5rem;
-            }
-            
-            .summary-content h2 {
-                font-size: 1.3rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
             .header h1 {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
             
             .stats {
-                gap: 12px;
+                gap: 8px;
+                font-size: 0.8rem;
+            }
+            
+            .stat {
+                min-width: 45px;
             }
             
             .stat-number {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             
             .stat-label {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
+            }
+            
+            /* Mobile-first content layout */
+            .content-area {
+                grid-template-columns: 1fr;
+                gap: 0;
+                border-radius: 0;
+                min-height: calc(100vh - 80px);
+                background: white;
+            }
+            
+            /* Compact sidebar as horizontal scroll */
+            .sidebar {
+                max-height: none;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+                background: #f8fafc;
+                order: 2; /* Move sidebar below content */
+            }
+            
+            .sidebar-header {
+                padding: 8px 15px;
+                font-size: 0.75rem;
+                text-align: center;
+            }
+            
+            .chapter-list {
+                display: flex;
+                overflow-x: auto;
+                padding: 10px 15px;
+                gap: 10px;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .chapter-item {
+                flex: none;
+                min-width: 100px;
+                border: 1px solid #e2e8f0;
+                border-radius: 20px;
+                background: white;
+            }
+            
+            .chapter-item.active {
+                background: #3498db;
+                color: white;
+                border-color: #3498db;
+            }
+            
+            .chapter-item.read {
+                background: #e8f5e8;
+                border-color: #27ae60;
+            }
+            
+            .chapter-item.active.read {
+                background: #3498db;
+            }
+            
+            .chapter-link {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                text-align: center;
+                white-space: nowrap;
+            }
+            
+            /* Full-screen content area */
+            .main-content {
+                order: 1;
+                height: calc(100vh - 200px);
+            }
+            
+            /* Horizontal tab layout */
+            .summary-tabs {
+                background: white;
+                border-bottom: 2px solid #f1f5f9;
+                padding: 0 10px;
+                gap: 5px;
+                justify-content: space-around;
             }
             
             .tab-button {
                 font-size: 0.75rem;
+                padding: 8px 16px;
+                flex: 1;
+                min-width: auto;
+                border-radius: 20px;
+                margin: 5px 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            .tab-button.active {
+                background: #3498db;
+                color: white;
+                border: none;
+            }
+            
+            /* Optimized reading area */
+            .summary-content {
+                padding: 15px;
+                max-height: calc(100vh - 280px);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+            
+            /* Better mobile navigation */
+            .mobile-nav {
+                display: flex;
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                gap: 8px;
+            }
+            
+            .nav-button {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            }
+            
+            /* Floating read button */
+            .mark-read-btn {
+                position: fixed;
+                bottom: 70px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                border-radius: 20px;
+                z-index: 101;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            }
+            
+            /* Optimized typography for mobile */
+            .summary-content h1 {
+                font-size: 1.3rem;
+                margin-bottom: 12px;
+                line-height: 1.3;
+            }
+            
+            .summary-content h2 {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+                line-height: 1.4;
+            }
+            
+            .summary-content h3 {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+            
+            .summary-content p {
+                margin-bottom: 12px;
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+            
+            .summary-content ul, .summary-content ol {
+                margin-left: 15px;
+                margin-bottom: 12px;
+            }
+            
+            .summary-content li {
+                margin-bottom: 6px;
+                line-height: 1.5;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Even more compact for small phones */
+            .header {
                 padding: 8px 10px;
-                min-width: 100px;
+            }
+            
+            .header h1 {
+                font-size: 1rem;
+            }
+            
+            .stats {
+                gap: 6px;
+            }
+            
+            .stat {
+                min-width: 40px;
+            }
+            
+            .stat-number {
+                font-size: 0.85rem;
+            }
+            
+            .stat-label {
+                font-size: 0.6rem;
+            }
+            
+            .tab-button {
+                font-size: 0.7rem;
+                padding: 6px 12px;
+                min-width: auto;
             }
             
             .summary-content {
-                padding: 15px;
+                padding: 12px;
+                max-height: calc(100vh - 260px);
+                font-size: 0.95rem;
             }
             
             .summary-content h1 {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+            
+            .summary-content h2 {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+            
+            .chapter-list {
+                padding: 8px 10px;
+                gap: 8px;
+            }
+            
+            .chapter-item {
+                min-width: 80px;
+            }
+            
+            .chapter-link {
+                padding: 6px 10px;
+                font-size: 0.75rem;
             }
         }
         
