@@ -1627,6 +1627,18 @@
                     <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
                     <path d="M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/>
                     <circle cx="12" cy="12" r="2"/>
+                </svg>`,
+                'Actionable Steps:': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                </svg>`,
+                'Closing Note:': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <polyline points="14,2 14,8 20,8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10,9 9,9 8,9"/>
                 </svg>`
             };
             
@@ -1647,7 +1659,9 @@
                         (sectionNameClean === 'key ideas' && headerTextClean.includes('key ideas')) ||
                         (sectionNameClean === 'golden nuggets' && headerTextClean.includes('golden nuggets')) ||
                         (sectionNameClean === 'practical and applicable' && (headerTextClean.includes('practical') || headerTextClean.includes('applicable'))) ||
-                        (sectionNameClean === 'paradigms and thinking models' && (headerTextClean.includes('paradigms') || headerTextClean.includes('thinking models')))) {
+                        (sectionNameClean === 'paradigms and thinking models' && (headerTextClean.includes('paradigms') || headerTextClean.includes('thinking models'))) ||
+                        (sectionNameClean === 'actionable steps' && headerTextClean.includes('actionable steps')) ||
+                        (sectionNameClean === 'closing note' && headerTextClean.includes('closing note'))) {
                         
                         // Don't replace if already wrapped
                         if (header.parentNode.classList && header.parentNode.classList.contains('content-section-header')) {
