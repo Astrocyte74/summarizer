@@ -450,9 +450,24 @@
                 border-color: #27ae60;
             }
             
+            .chapter-item.read::after {
+                content: '✓';
+                position: absolute;
+                right: 4px;
+                top: 2px;
+                color: #27ae60;
+                font-weight: bold;
+                font-size: 0.7rem;
+                line-height: 1;
+            }
+            
             .chapter-item.active.read {
                 background: #3498db;
                 border-color: #3498db;
+            }
+            
+            .chapter-item.active.read::after {
+                color: white;
             }
             
             .chapter-link {
