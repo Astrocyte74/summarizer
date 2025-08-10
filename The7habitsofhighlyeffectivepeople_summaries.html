@@ -255,7 +255,8 @@
         }
         
         .content-section-header h2,
-        .content-section-header h3 {
+        .content-section-header h3,
+        .content-section-header h4 {
             margin: 0;
             color: var(--warm-text-muted);
             font-family: 'Lora', serif;
@@ -1397,7 +1398,7 @@
             
             // Find and enhance section headers
             const summaryContent = document.getElementById('summaryContent');
-            const headers = summaryContent.querySelectorAll('h2, h3');
+            const headers = summaryContent.querySelectorAll('h2, h3, h4');
             
             headers.forEach(header => {
                 const headerText = header.textContent.trim();
