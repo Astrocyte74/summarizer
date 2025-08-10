@@ -518,7 +518,7 @@
             /* Optimized reading area */
             .summary-content {
                 padding: 15px;
-                padding-bottom: 80px; /* Space for floating buttons */
+                padding-bottom: 40px; /* Reduced space since no nav buttons */
                 max-height: calc(100vh - 180px);
                 overflow-y: auto;
                 -webkit-overflow-scrolling: touch;
@@ -527,26 +527,15 @@
                 position: relative;
             }
             
-            /* Better mobile navigation */
+            /* Hide mobile navigation buttons - using horizontal nav + swipe instead */
             .mobile-nav {
-                display: flex;
-                position: fixed;
-                bottom: 10px;
-                right: 10px;
-                gap: 8px;
-            }
-            
-            .nav-button {
-                width: 44px;
-                height: 44px;
-                font-size: 1.1rem;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                display: none;
             }
             
             /* Tiny read button for mobile */
             .mark-read-btn {
                 position: fixed;
-                bottom: 70px;
+                bottom: 20px;
                 right: 10px;
                 padding: 4px 8px;
                 font-size: 0.65rem;
@@ -704,10 +693,11 @@
         
         @media (max-width: 768px) {
             .home-button {
-                top: 15px;
-                left: 15px;
-                padding: 8px 12px;
-                font-size: 0.8rem;
+                top: 5px;
+                left: 5px;
+                padding: 6px 8px;
+                font-size: 0.7rem;
+                z-index: 1001;
             }
             
             .home-text {
