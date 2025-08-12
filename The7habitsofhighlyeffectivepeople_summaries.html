@@ -803,16 +803,16 @@
             position: fixed;
             top: 20px;
             left: 20px;
+            width: 40px;
+            height: 40px;
+            padding: 8px;
             background: var(--primary-color);
             color: white;
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 25px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            justify-content: center;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 15px var(--shadow-color);
             transition: all 0.3s ease;
@@ -826,8 +826,8 @@
         }
         
         .home-button svg {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
         }
         
         .home-icon {
@@ -836,16 +836,17 @@
         
         @media (max-width: 768px) {
             .home-button {
-                top: 5px;
-                left: 5px;
-                padding: 6px 8px;
-                font-size: 0.7rem;
+                top: 10px;
+                left: 10px;
+                width: 32px;
+                height: 32px;
+                padding: 6px;
                 z-index: 1001;
             }
             
             .home-button svg {
-                width: 14px;
-                height: 14px;
+                width: 16px;
+                height: 16px;
             }
             
             .home-text {
