@@ -803,7 +803,7 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            background: rgba(52, 152, 219, 0.9);
+            background: var(--primary-color);
             color: white;
             text-decoration: none;
             padding: 10px 15px;
@@ -814,15 +814,15 @@
             font-size: 0.9rem;
             font-weight: 600;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 4px 15px var(--shadow-color);
             transition: all 0.3s ease;
             z-index: 1000;
         }
         
         .home-button:hover {
-            background: rgba(52, 152, 219, 1);
+            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            box-shadow: 0 6px 20px var(--shadow-color);
         }
         
         .home-icon {
